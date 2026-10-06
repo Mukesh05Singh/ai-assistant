@@ -1,0 +1,15 @@
+guild_name: "My private agent"
+channels:
+  - agent-ops
+  - ai-news
+  - github-trending
+  - research
+  - creator-radar
+  - daily
+  - industry-signals
+  - policy-watch
+  - weekly
+  - markets
+  - sdm-jobs
+  - interview-prep
+direct_message_alias: direct-message

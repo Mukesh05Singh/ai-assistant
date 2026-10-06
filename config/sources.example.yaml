@@ -1,0 +1,181 @@
+http:
+  user_agent: "Saathi/0.1 (personal research reader; configure an operator contact for SEC access)"
+  timeout_seconds: 20
+  allowed_hosts:
+    - api.ashbyhq.com
+    - api.fda.gov
+    - api.github.com
+    - api.lever.co
+    - boards-api.greenhouse.io
+    - export.arxiv.org
+    - hacker-news.firebaseio.com
+    - news.google.com
+    - news.ycombinator.com
+    - openai.com
+    - www.federalregister.gov
+    - www.federalreserve.gov
+    - www.reddit.com
+
+# Source types are registry keys. Add entries or entire collectors without code changes.
+collectors:
+  ai_news:
+    type: news_digest
+    title: "AI news (whole field)"
+    sources:
+      - name: OpenAI News
+        type: rss
+        url: https://openai.com/news/rss.xml
+      - name: Google News AI
+        type: google_news
+        query: artificial intelligence OR LLM OR AI agents
+      - name: Hacker News AI
+        type: hackernews
+        keywords: [ai, llm, model, agent, inference, machine learning]
+      - name: MachineLearning community
+        type: reddit
+        subreddit: MachineLearning
+  github_trending:
+    type: github_trending
+    title: "Trending AI repositories on GitHub"
+    sources:
+      - name: GitHub AI topics
+        type: github
+        topics: [llm, ai-agents, rag, generative-ai, machine-learning, mcp]
+        rate_delay_seconds: 6.1
+  research_rotation:
+    type: topic_rotation
+    days:
+      "0":
+        title: "RAG and retrieval"
+        sources:
+          - name: arXiv retrieval
+            type: arxiv
+            query: 'abs:"retrieval augmented" OR abs:reranking'
+      "1":
+        title: "Agents and tool use"
+        sources:
+          - name: arXiv agents
+            type: arxiv
+            query: 'abs:"LLM agent" OR abs:"tool use"'
+      "2":
+        title: "Training and MLOps"
+        sources:
+          - name: arXiv continual learning
+            type: arxiv
+            query: 'abs:"continual learning" OR abs:"fine-tuning"'
+      "3":
+        title: "Multimodal systems"
+        sources:
+          - name: arXiv multimodal
+            type: arxiv
+            query: 'abs:"vision-language" OR abs:"speech recognition"'
+      "4":
+        title: "Evaluation and inference"
+        sources:
+          - name: arXiv evaluation
+            type: arxiv
+            query: 'abs:"LLM evaluation" OR abs:quantization'
+  creator_radar:
+    type: creator_radar
+    title: "Creator and format radar"
+    sources: []
+  industry_signals:
+    type: industry_signals
+    title: "Industry and customer signals"
+    sources:
+      - name: Industry news
+        type: google_news
+        query: software industry startup product launch
+  # Engineering-manager job search through official public job-board APIs (no scraping, no login).
+  # Big-tech careers sites (Amazon, Google, Meta, Microsoft) have no such API; see docs/sdm-prep.md.
+  # OpenAI's Ashby board exceeds the 5 MB response cap, so it is not listed.
+  sdm_jobs:
+    type: job_search
+    title: "New engineering-manager roles"
+    filter: &em_filter
+      title_patterns:
+        - 'engineering manager'
+        - 'manager,? (of )?(software )?engineering'
+        - 'software (development|engineering) manager'
+        - 'head of engineering'
+      # Case-insensitive regular expressions matched against the posting's location text.
+      # Empty list = all locations. Example for US-only (remote or onsite):
+      #   - 'united states|\busa?\b|us-rem|usca|north america|\b(chi|atl)\b'
+      #   - ',\s*(al|ak|az|ar|ca|co|ct|dc|de|fl|ga|hi|ia|id|il|in|ks|ky|la|ma|md|me|mi|mn|mo|ms|mt|nc|nd|ne|nh|nj|nm|nv|ny|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|va|vt|wa|wi|wv|wy)\b'
+      #   - 'new york|\bnyc\b|san francisco|\bsf\b|seattle|bellevue|redmond|mountain view|palo alto|menlo park|sunnyvale|san jose|los angeles|chicago|boston|austin|denver|atlanta|washington,? ?d\.?c'
+      #   - '\b(california|washington|texas|colorado|oregon|virginia|massachusetts|illinois|new jersey|florida|georgia|maryland|arizona)\b'
+      #   - '^\s*(remote|hybrid|distributed|in-office|n/a)\b'
+      location_patterns: []
+      max_age_days: 21
+      limit: 8
+    sources:
+      - {name: Anthropic, type: job_board, provider: greenhouse, board: anthropic, <<: *em_filter}
+      - {name: Stripe, type: job_board, provider: greenhouse, board: stripe, <<: *em_filter}
+      - {name: Databricks, type: job_board, provider: greenhouse, board: databricks, <<: *em_filter}
+      - {name: Airbnb, type: job_board, provider: greenhouse, board: airbnb, <<: *em_filter}
+      - {name: Coinbase, type: job_board, provider: greenhouse, board: coinbase, <<: *em_filter}
+      - {name: Pinterest, type: job_board, provider: greenhouse, board: pinterest, <<: *em_filter}
+      - {name: Robinhood, type: job_board, provider: greenhouse, board: robinhood, <<: *em_filter}
+      - {name: Figma, type: job_board, provider: greenhouse, board: figma, <<: *em_filter}
+      - {name: Datadog, type: job_board, provider: greenhouse, board: datadog, <<: *em_filter}
+      - {name: Cloudflare, type: job_board, provider: greenhouse, board: cloudflare, <<: *em_filter}
+      - {name: Reddit, type: job_board, provider: greenhouse, board: reddit, <<: *em_filter}
+      - {name: Lyft, type: job_board, provider: greenhouse, board: lyft, <<: *em_filter}
+      - {name: Dropbox, type: job_board, provider: greenhouse, board: dropbox, <<: *em_filter}
+      - {name: Notion, type: job_board, provider: ashby, board: notion, <<: *em_filter}
+      - {name: Ramp, type: job_board, provider: ashby, board: ramp, <<: *em_filter}
+      - {name: Linear, type: job_board, provider: ashby, board: linear, <<: *em_filter}
+    # Google News surfaces big-tech EM openings and hiring news that have no public board API.
+      - name: Big-tech EM hiring news
+        type: google_news
+        query: '"engineering manager" OR "software development manager" hiring Amazon OR Google OR Meta OR Microsoft'
+  # Daily behavioral practice questions from catalog/interview_bank.yaml.
+  interview_drill:
+    type: interview_drill
+    title: "Today's SDM behavioral drill"
+    sources:
+      - name: SDM question bank
+        type: question_bank
+        path: ~/saathi/catalog/interview_bank.yaml
+        companies: [amazon, google, meta]
+        per_company: 1
+  recalls:
+    type: recalls
+    title: "Pet-product recall alerts"
+    sources:
+      - name: openFDA animal recalls
+        type: openfda
+        lookback_days: 30
+  policy_watch:
+    type: policy_watch
+    title: "Employment and immigration policy"
+    sources:
+      - name: Federal Register employment policy
+        type: federal_register
+        term: employment immigration
+      - name: Policy news
+        type: google_news
+        query: employment immigration policy changes
+  digest:
+    type: digest
+    title: "Recent research outputs"
+    sources:
+      - name: Hermes reports
+        type: hermes_outputs
+        job_names: [ai news, github trending, research rotation, creator radar, industry signals]
+        max_age_hours: 24
+        characters: 2500
+  weekly:
+    type: weekly
+    title: "Week in review"
+    sources:
+      - name: Hermes reports
+        type: hermes_outputs
+        job_names: [ai news, github trending, research rotation, creator radar, industry signals, policy watch]
+        max_age_hours: 168
+        characters: 1500
+
+# Optional source templates. Copy into a collector and supply public identifiers locally.
+optional_source_templates:
+  youtube: {name: Creator name, type: youtube, channel_id: ""}
+  appstore: {name: Product reviews, type: appstore, app_id: ""}

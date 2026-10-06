@@ -1,0 +1,112 @@
+# Engineering-manager (SDM / EM) behavioral question bank.
+# Questions are original paraphrases of commonly reported themes; `values` name each company's
+# published principles. reference_url is the company's own public page and is used as the citation.
+# Extend freely: add companies or questions without code changes. `id` must be unique per company.
+schema_version: 1
+rubric:
+  - "Scope: team size, org reach, money/customers/latency at stake - numbers, not adjectives."
+  - "Ownership: what YOU decided and did versus what the team did; 'I' for decisions, 'we' for execution."
+  - "Judgment: options considered, trade-offs, data used, and why the chosen path."
+  - "People leadership: hiring, coaching, performance management, conflict, and growing leaders."
+  - "Results: measurable outcome, what you would do differently, and the durable mechanism left behind."
+  - "Senior-level signal: influences beyond own team, handles ambiguity, sets direction rather than reacting."
+companies:
+  amazon:
+    name: Amazon
+    reference_url: https://www.amazon.jobs/content/en/our-workplace/leadership-principles
+    notes: >-
+      Every round maps questions to Leadership Principles; a Bar Raiser probes depth with repeated
+      follow-ups. Prepare two distinct stories per principle and expect "what data did you use?".
+    questions:
+      - {id: amz-hire, question: "Tell me about the strongest engineer you hired and how you found and closed them.", signal: hiring bar and talent strategy, values: [Hire and Develop the Best]}
+      - {id: amz-lowperf, question: "Describe a time you managed someone out or through a performance plan.", signal: performance management with fairness and speed, values: [Hire and Develop the Best, Earn Trust]}
+      - {id: amz-backbone, question: "Tell me about a time you strongly disagreed with your manager or a senior leader. What happened?", signal: principled disagreement then commitment, values: ["Have Backbone; Disagree and Commit"]}
+      - {id: amz-miss, question: "Tell me about a project that missed its deadline or goal. What did you own?", signal: accountability without blame, values: [Ownership, Deliver Results]}
+      - {id: amz-customer, question: "Describe a decision where you put the customer ahead of a team or business convenience.", signal: working backwards from customer impact, values: [Customer Obsession]}
+      - {id: amz-dive, question: "Tell me about an operational problem you found by going into the details yourself.", signal: hands-on depth and metrics fluency, values: [Dive Deep]}
+      - {id: amz-bias, question: "Describe a time you made a decision with incomplete data under time pressure.", signal: calculated risk and reversibility thinking, values: [Bias for Action, Are Right A Lot]}
+      - {id: amz-simplify, question: "Tell me about a process or system you simplified that others had accepted as normal.", signal: invention and removing toil, values: [Invent and Simplify]}
+      - {id: amz-standards, question: "Describe a time you raised the quality bar for your team even though it slowed delivery.", signal: standards and mechanisms, values: [Insist on the Highest Standards]}
+      - {id: amz-thinkbig, question: "Tell me about a long-term vision you set for your team and how you got buy-in.", signal: multi-year roadmap and influence, values: [Think Big]}
+      - {id: amz-frugal, question: "Describe how you delivered with fewer people or less budget than you wanted.", signal: resourcefulness and prioritisation, values: [Frugality]}
+      - {id: amz-trust, question: "Tell me about a time you had to rebuild trust with a partner team or a report.", signal: candour, listening, and repair, values: [Earn Trust]}
+      - {id: amz-employer, question: "How have you made your team a better place to work while keeping delivery high?", signal: team health, burnout, and inclusion, values: ["Strive to be Earth's Best Employer"]}
+      - {id: amz-learn, question: "Tell me about something technical you had to learn quickly to lead your team well.", signal: curiosity at manager level, values: [Learn and Be Curious]}
+  google:
+    name: Google
+    reference_url: https://www.google.com/about/careers/applications/how-we-hire/
+    notes: >-
+      Managers are assessed on leadership, role-related knowledge, general cognitive ability, and
+      "Googleyness" (comfort with ambiguity, collaboration, humility, bias to user value). Expect
+      hypotheticals ("what would you do if...") as well as past-behaviour questions.
+    questions:
+      - {id: g-ambig, question: "Tell me about a project where the goal itself was unclear. How did you create clarity?", signal: navigating ambiguity, values: [Googleyness]}
+      - {id: g-hypo-conflict, question: "Two senior engineers on your team disagree on an architecture and both escalate to you. What do you do?", signal: conflict resolution and decision frameworks, values: [Leadership]}
+      - {id: g-grow, question: "Describe how you grew an engineer into a tech lead or manager.", signal: developing leaders, values: [Leadership]}
+      - {id: g-prioritize, question: "Your team has three times more requests than capacity. Walk me through how you prioritise.", signal: structured prioritisation, values: [General cognitive ability]}
+      - {id: g-xfn, question: "Tell me about influencing a team you did not manage to change their plans.", signal: influence without authority, values: [Leadership, Googleyness]}
+      - {id: g-failure, question: "Describe a failure on your team and what changed afterwards.", signal: blameless learning culture, values: [Googleyness]}
+      - {id: g-tech, question: "Tell me about a technical decision you pushed back on even though the team wanted it.", signal: technical judgment as a manager, values: [Role-related knowledge]}
+      - {id: g-inclusion, question: "How have you made sure quieter or remote team members are heard?", signal: inclusive leadership, values: [Googleyness]}
+  meta:
+    name: Meta
+    reference_url: https://www.metacareers.com/
+    notes: >-
+      EM loops usually include people management, project/execution, and a system design round.
+      Interviewers value speed, impact quantified with metrics, and direct feedback.
+    questions:
+      - {id: m-impact, question: "What is the most impactful project your team shipped? Quantify the impact.", signal: impact and metrics, values: [Focus on Long-Term Impact, Move Fast]}
+      - {id: m-feedback, question: "Tell me about the hardest piece of direct feedback you gave a report.", signal: direct feedback with care, values: [Be Direct and Respect Your Colleagues]}
+      - {id: m-reorg, question: "Describe leading your team through a reorg, layoff, or major priority change.", signal: change management and morale, values: [Meta, Metamates, Me]}
+      - {id: m-speed, question: "Tell me about a time you increased your team's shipping velocity. How did you measure it?", signal: execution and engineering effectiveness, values: [Move Fast]}
+      - {id: m-poor-perf, question: "Describe a report who was underperforming. What did you do and what was the outcome?", signal: performance management, values: [Be Direct and Respect Your Colleagues]}
+      - {id: m-xfn, question: "Tell me about a conflict with a product manager or design partner.", signal: cross-functional partnership, values: [Build Awesome Things]}
+      - {id: m-retain, question: "Tell me about a strong engineer who wanted to leave. What did you do?", signal: retention and career growth, values: [Meta, Metamates, Me]}
+  microsoft:
+    name: Microsoft
+    reference_url: https://careers.microsoft.com/v2/global/en/culture
+    notes: >-
+      Culture centres on growth mindset; managers are expected to "model, coach, care". Show learning
+      from mistakes and collaboration across org boundaries (One Microsoft).
+    questions:
+      - {id: ms-growth, question: "Tell me about a mistake you made as a manager and what you learned.", signal: growth mindset, values: [Growth mindset]}
+      - {id: ms-coach, question: "Describe how you coached a report through a career-defining challenge.", signal: model, coach, care, values: [Growth mindset]}
+      - {id: ms-customer, question: "Tell me about a time customer feedback changed your team's roadmap.", signal: customer focus, values: [Customer obsessed]}
+      - {id: ms-one, question: "Describe a cross-org initiative you led where incentives were not aligned.", signal: collaboration across boundaries, values: [One Microsoft]}
+      - {id: ms-inclusion, question: "What have you done to build a diverse and inclusive team?", signal: inclusive hiring and culture, values: [Diverse and inclusive]}
+      - {id: ms-ambig, question: "Tell me about a time you had to deliver while requirements kept changing.", signal: adaptability, values: [Making a difference]}
+  apple:
+    name: Apple
+    reference_url: https://www.apple.com/careers/us/
+    notes: >-
+      Teams are functional and craft-focused; expect deep questions on quality, attention to detail,
+      confidentiality, and collaboration with design and hardware partners.
+    questions:
+      - {id: ap-quality, question: "Tell me about a time you delayed a release because the quality was not good enough.", signal: craft and quality bar, values: [Attention to detail]}
+      - {id: ap-xfn, question: "Describe working closely with design or hardware teams under a fixed launch date.", signal: cross-functional execution, values: [Collaboration]}
+      - {id: ap-detail, question: "What is a detail in your product you personally fought for?", signal: product ownership, values: [Attention to detail]}
+      - {id: ap-team, question: "How do you keep a small, senior team motivated over a multi-year effort?", signal: long-horizon leadership, values: [Collaboration]}
+  netflix:
+    name: Netflix
+    reference_url: https://jobs.netflix.com/culture
+    notes: >-
+      Culture memo emphasises freedom and responsibility, context not control, candour, and the
+      "keeper test". Expect questions on hard talent decisions and giving context rather than orders.
+    questions:
+      - {id: nf-keeper, question: "Tell me about a time you decided a good performer was not the right fit for the team's future.", signal: high talent density, values: [Keeper test]}
+      - {id: nf-context, question: "Describe how you gave your team context instead of directives on a big decision.", signal: context not control, values: [Context not control]}
+      - {id: nf-candor, question: "Tell me about feedback you received that was hard to hear and what you changed.", signal: candour and self-awareness, values: [Candor]}
+      - {id: nf-freedom, question: "Describe a time a report made a call you would not have made. What did you do?", signal: freedom and responsibility, values: [Freedom and responsibility]}
+  startup:
+    name: Growth-stage startups (Stripe, Databricks, OpenAI, Anthropic and similar)
+    reference_url: https://github.com/kaushikb9/em-interviews
+    notes: >-
+      Expect player-coach expectations, hiring from scratch, fast scaling, and technical depth. Many
+      loops include a "manager project deep dive" and a system design round.
+    questions:
+      - {id: st-zero, question: "Tell me about building a team from zero or doubling it within a year.", signal: scaling hiring and onboarding, values: [Hiring]}
+      - {id: st-player, question: "How do you balance hands-on technical work with managing?", signal: player-coach judgment, values: [Technical depth]}
+      - {id: st-process, question: "What process did you introduce, and how did you know it was worth the overhead?", signal: lightweight effective process, values: [Execution]}
+      - {id: st-incident, question: "Walk me through a major production incident on your team and the follow-up.", signal: operational excellence, values: [Execution]}
+      - {id: st-strategy, question: "Describe a time you changed the team's technical strategy based on business change.", signal: business-aware leadership, values: [Strategy]}
+      - {id: st-why, question: "Why management, and what kind of team do you build?", signal: leadership philosophy, values: [Values fit]}
