@@ -1,8 +1,8 @@
-# Saathi
+# Dost
 
 > Your own AI companion - self-hosted, on your own server, for $0.
 
-“Saathi” is Hindi for “companion.” It is an open-source kit for a personal research agent: it watches sources you choose, prepares
+“Dost” is Hindi for “friend.” It is an open-source kit for a personal research agent: it watches sources you choose, prepares
 citation-ready data sheets, asks [Hermes Agent](https://github.com/NousResearch/hermes-agent) to summarise
 them, and delivers private reports in Discord. It is a customisable, self-hosted alternative that you own.
 
@@ -13,7 +13,7 @@ local language models.
 
 ```mermaid
 flowchart LR
-  Sources[Configured public sources] --> Collectors[Saathi collectors]
+  Sources[Configured public sources] --> Collectors[Dost collectors]
   Collectors --> Sheet[Cited data sheet]
   Sheet --> Hermes[Hermes Agent + scheduler]
   Hermes --> Model[Chosen model provider]
@@ -109,7 +109,7 @@ The idempotent script creates a non-root `hermes` user, copies the current autho
 password/root login, enables unattended upgrades and UFW, adds 2 GB swap, sets the timezone, and enables
 user-service lingering. Keep the current SSH session open until key login works in a second terminal.
 
-## 3. Install Hermes and Saathi
+## 3. Install Hermes and Dost
 
 Switch to the service user and run the supported Hermes installer non-interactively:
 
@@ -157,7 +157,7 @@ Collector data arrives through `--script`, so scheduled summaries do not need sh
 tools. Do not loop over every auxiliary config key: some keys are booleans or retry settings, not model
 mappings.
 
-## 5. Configure Saathi with the guided interview
+## 5. Configure Dost with the guided interview
 
 Run the catalog-driven wizard. It asks who you are, which capabilities you want, and only the relevant
 follow-up questions. It displays the complete config/job/channel/add-on plan and waits for an explicit
@@ -246,7 +246,7 @@ The guided interview has written the runtime configuration. Preview schedules be
 
 Manual YAML editing remains available as an advanced path: copy each `*.example.yaml` to its non-example
 name, keep it mode `0600`, and validate with `saathi doctor`. Set `runtime.interpreter` to the Python that
-has Saathi installed and keep every outbound host in `http.allowed_hosts`.
+has Dost installed and keep every outbound host in `http.allowed_hosts`.
 
 Later, change behavior in the allowlisted interactive owner chat. Hermes proposes a diff, waits for an
 explicit yes, then applies and resynchronizes jobs:
